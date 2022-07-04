@@ -6,7 +6,7 @@
     &__container {
         display: grid;
         grid-template-columns: 1fr 2fr 1fr 1fr;
-        gap: 30px;
+        gap: 50px 30px;
     }
 
     &__logo-link {
@@ -44,7 +44,7 @@
 
     &__link {
         transition: color 0.36s ease-in-out;
-        
+
         &:hover {
             color: $color-main;
         }
@@ -64,18 +64,17 @@
 
     &__data {
         display: grid;
+        grid-template-columns: 1fr 2fr 1fr 1fr;
+        grid-column: 1 / -1;
+        gap: 30px;
         
-        &-shop {
-            grid-template-columns: 1fr;
-            grid-column-start: 1;
-            grid-column-end: 2;
-            
-        }
-        &-design {
-            grid-template-columns: 1fr;
-            grid-column-start: 3;
-            grid-column-end: 4;
 
+        &-shop {
+            grid-column: 1 / 2;
+        }
+
+        &-design {
+            grid-column: 4 / -1;
         }
     }
 }
