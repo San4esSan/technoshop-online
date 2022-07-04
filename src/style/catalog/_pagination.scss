@@ -1,0 +1,21 @@
+.pagination {
+  
+  &__list {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #04E277;
+    border-radius: 2px;
+    margin: 0 10px;
+    width: 36px;
+    height: 36px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

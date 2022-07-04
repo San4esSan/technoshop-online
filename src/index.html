@@ -204,68 +204,72 @@
                         </li>
                     </ul>
                 </div>
+
                 <aside class="catalog__filter filter">
                     <form class="filter__form">
                         <h3 class="filter__title">Фильтры</h3>
 
-                        <fieldset class="filter__field">
-                            <legend class="filter__field-title">Цена</legend>
-                            <div class="filter__flex">
-                                <label><input type="number" name="price-start" placeholder="от" class="filter__input"></label>
-                                <label><input type="number" name="price-end" placeholder="до" class="filter__input"></label>
-                            </div>
-                        </fieldset>
-
-                        <fieldset class="filter__field">
-                            <legend class="filter__field-title">Категория</legend>
-                            <label>
-                                <select class="filter__select" name="category">
-                                    <option value="phone">Смартфоны</option>
-                                    <option value="tab">Планшеты</option>
-                                    <option value="clock">Умные часы</option>
-                                    <option value="monoblock">Моноблоки</option>
-                                    <option value="notebook">Ноутбуки</option>
-                                </select>
-                            </label>
-                        </fieldset>
-
-                        <fieldset class="filter__field">
-                            <legend class="filter__field-title">Диагональ</legend>
-                            <div class="filter__flex">
-                                <label><input type="number" name="diagonal-start" placeholder="от" class="filter__input"></label>
-                                <label><input type="number" name="diagonal-end" placeholder="до" class="filter__input"></label>
-                            </div>
-                        </fieldset>
-
-                        <fieldset class="filter__field">
-                            <legend class="filter__field-title">Диагональ</legend>
-                            <div class="filter__flex">
+                        <div class="filter__fields-list">
+                            <fieldset class="filter__field">
+                                <legend class="filter__field-title">Цена</legend>
+                                <div class="filter__flex">
+                                    <label><input class="filter__input" type="number" name="price-start" placeholder="от" ></label>
+                                    <label><input class="filter__input" type="number" name="price-end" placeholder="до" ></label>
+                                </div>
+                            </fieldset>
+    
+                            <fieldset class="filter__field">
+                                <legend class="filter__field-title">Категория</legend>
                                 <label>
-                                    <input class="filter__checkbox" name="color" value="white" type="checkbox">Белый
+                                    <select class=" filter__input filter__input_select" name="category">
+                                        <option value="phone">Смартфоны</option>
+                                        <option value="tab">Планшеты</option>
+                                        <option value="clock">Умные часы</option>
+                                        <option value="monoblock">Моноблоки</option>
+                                        <option value="notebook">Ноутбуки</option>
+                                    </select>
                                 </label>
-                                <label>
-                                    <input class="filter__checkbox" name="color" value="black" type="checkbox">Черный
-                                </label>
-                                <label>
-                                    <input class="filter__checkbox" name="color" value="silver" type="checkbox">Серебристый
-                                </label>
-                                <label>
-                                    <input class="filter__checkbox" name="color" value="red" type="checkbox">Красный
-                                </label>
-                                <label>
-                                    <input class="filter__checkbox" name="color" value="green" type="checkbox">Зеленый
-                                </label>
-                                <label>
-                                    <input class="filter__checkbox" name="color" value="gold" type="checkbox">Золотой
-                                </label>
-                            </div>
-                        </fieldset>
+                            </fieldset>
+    
+                            <fieldset class="filter__field">
+                                <legend class="filter__field-title">Диагональ</legend>
+                                <div class="filter__flex">
+                                    <label><input class="filter__input" type="number" name="diagonal-start" placeholder="от"></label>
+                                    <label><input class="filter__input" type="number" name="diagonal-end" placeholder="до"></label>
+                                </div>
+                            </fieldset>
+    
+                            <fieldset class="filter__field">
+                                <legend class="filter__field-title">Диагональ</legend>
+                                <div class="filter__flex filter__flex_column">
+                                    <label>
+                                        <input class="filter__checkbox" name="color" value="white" type="checkbox">Белый
+                                    </label>
+                                    <label>
+                                        <input class="filter__checkbox" name="color" value="black" type="checkbox">Черный
+                                    </label>
+                                    <label>
+                                        <input class="filter__checkbox" name="color" value="silver" type="checkbox">Серебристый
+                                    </label>
+                                    <label>
+                                        <input class="filter__checkbox" name="color" value="red" type="checkbox">Красный
+                                    </label>
+                                    <label>
+                                        <input class="filter__checkbox" name="color" value="green" type="checkbox">Зеленый
+                                    </label>
+                                    <label>
+                                        <input class="filter__checkbox" name="color" value="gold" type="checkbox">Золотой
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
 
                         <button class="filter__apply" type="submit">Применить фильтр</button>
 
                         <button class="filter__reset" type="reset">Очистить все</button>
                     </form>
                 </aside>
+
                 <div class="catalog__pagination pagination">
                     <a href="#" class="pagination__arrow pagination__arrow_start" aria-label="перейти на первую страницу"></a>
                     <ul class="pagination__list">
@@ -365,6 +369,14 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+            
+            <div class="footer__data">
+                <div class="footer__data-shop">© TechnoSHOP, 2022</div>
+                <div class="footer__data-design">
+                    <div>Design by Anastasia Ilina</div>
+                    <div>Tg: @Mrshmallowww</div>
+                </div>
             </div>
         </div>
     </footer>

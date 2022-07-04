@@ -61,4 +61,21 @@
             margin-bottom: 0;
         }
     }
+
+    &__data {
+        display: grid;
+        
+        &-shop {
+            grid-template-columns: 1fr;
+            grid-column-start: 1;
+            grid-column-end: 2;
+            
+        }
+        &-design {
+            grid-template-columns: 1fr;
+            grid-column-start: 3;
+            grid-column-end: 4;
+
+        }
+    }
 }
