@@ -34,6 +34,24 @@
             line-height: 24px;
             margin-bottom: 10px;
         }
+
+        &-select {
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: 33px;
+                top: 50%;
+                transform: translateY(calc(-50% - 3px)) rotate(45deg);
+                display: block;
+                width: 10px;
+                height: 10px;
+                border-width: 2px;
+                border-style: solid;
+                border-color: transparent $color-primary $color-primary transparent;
+            }
+        }
     }
 
 
@@ -56,6 +74,10 @@
         padding: 9px 10px;
         border: 1px solid $color-primary;
 
+        &_select {
+            appearance: none;
+        }
+
         @include laptop {
             width: 145px;
         }
@@ -70,7 +92,7 @@
         }
     }
 
-   
+
 
     &__checkbox {
         margin-right: 10px;
