@@ -1,3 +1,5 @@
+import { API_URI } from "./var";
+
 const createCardImageSlider = (largeImages) => {
   const cardImageSlider = document.createElement('ul');
   cardImageSlider.className = 'swiper-wrapper';
@@ -16,7 +18,6 @@ const createCardImageSlider = (largeImages) => {
 }
 
 export const renderItem = item => {
-  console.log(item);
   const cardImage = document.querySelector('.card__image');
   cardImage.append(createCardImageSlider(item.images.large))
 }
