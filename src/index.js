@@ -9,15 +9,17 @@ import { startPagination } from "./modules/pagination";
 import { getGoods, getGoodsItem } from "./modules/goodsServis";
 import { renderGoods } from "./modules/renderGoods";
 import { renderItem } from "./modules/renderItem";
+import { filter } from "./modules/filter";
 
 try {
   const goodsList = document.querySelector(".goods__list");
 
   if (goodsList) {
+    
     const paginationWrapper = document.querySelector(".pagination");
-    const pageURL = new URL(location);
-    const page = +pageURL.searchParams.get("page") || 1;
-
+    
+    filter(goodsList, paginationWrapper);
+    
     goodsList.innerHTML = `
       <div class="goods__preload">
       <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,8 +28,7 @@ try {
       
       </div>
     `
-
-    getGoods({page}).then(({goods, pages, page}) => {
+    getGoods().then(({goods, pages, page}) => {
       renderGoods(goodsList, goods);
       startPagination(paginationWrapper, pages, page);
     })
