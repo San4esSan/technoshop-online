@@ -16,8 +16,8 @@
                 <img class="header__logo" src="img/logo.svg" alt="Логотип Techno Shop">
             </a>
 
-            <form class="header__search search">
-                <input type="search" class="search__input">
+            <form action="/" class="header__search search">
+                <input type="search" class="search__input" name="search">
                 <button class="search__button" aria-label="найти товар на сайте ">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
@@ -26,6 +26,7 @@
                     </svg>
                 </button>
             </form>
+
             <div class="header__nav">
                 <a href="tel:89149239223" class="header__phone">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +36,7 @@
                     </svg>
                     <span>8 914 923 92 - 23</span>
 
-                    <a href="cart.html" class="header__cart" aria-label="перейти в корзину">
+                    <a href="cart.html" class="header__cart" aria-label="перейти в корзину" data-count="0">
                         <svg width="36" height="36" viewBox="0 0 36 36" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path

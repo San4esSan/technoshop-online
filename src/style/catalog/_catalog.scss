@@ -1,4 +1,7 @@
 .catalog {
+    &__container {
+        position: relative;
+    }
 
     &__title {
         font-weight: 700;
@@ -7,7 +10,7 @@
         margin-bottom: 10px;
     }
 
-    &__container {
+    &__wrapper {
         display: grid;
         grid-template-columns: 4fr 340px;
         gap: 72px 30px;
@@ -16,14 +19,17 @@
             grid-template-columns: 3fr 340px;
             column-gap: 20px;
         }
+
         @include laptop {
             grid-template-columns: 2fr 310px;
             row-gap: 80px;
         }
+
         @include tablet {
             grid-template-columns: 1fr;
             row-gap: 50px;
         }
+
         @include mobile {
             row-gap: 40px;
         }
@@ -34,6 +40,33 @@
 
         @include tablet {
             grid-column: auto;
+        }
+    }
+
+    &__filter-btn {
+        display: none;
+
+        @include tablet {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 27px;
+            background-color: transparent;
+            border: none;
+            
+            &:after {
+                content: '';
+                display: block;
+                width: 18px;
+                height: 18px;
+                background-image: url(img/arrow-v.svg);
+                background-repeat: no-repeat;
+            }
         }
     }
 }
