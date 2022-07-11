@@ -4,44 +4,44 @@ import { startPagination } from "./pagination";
 import { renderGoods } from "./renderGoods";
 
 const toggleFilter = (filter, catalogFilterBtn, filterTitle) => {
-  catalogFilterBtn.addEventListener('click', () => {
-    filter.classList.add('filter_show');
+  catalogFilterBtn.addEventListener("click", () => {
+    filter.classList.add("filter_show");
     showOverlay();
   });
 
-  filterTitle.addEventListener('click', () => {
-    filter.classList.remove('filter_show');
+  filterTitle.addEventListener("click", () => {
+    filter.classList.remove("filter_show");
     hideOverlay();
-  })
-}
+  });
+};
 export const filter = (goodsList, paginationWrapper) => {
-  const filter = document.querySelector('.filter');
-  const catalogFilterBtn = document.querySelector('.catalog__filter-btn');
-  const category = document.querySelector('#category');
-  const filterTitle = document.querySelector('.filter__title');
+  const filter = document.querySelector(".filter");
+  const catalogFilterBtn = document.querySelector(".catalog__filter-btn");
+  const category = document.querySelector("#category");
+  const filterTitle = document.querySelector(".filter__title");
 
   toggleFilter(filter, catalogFilterBtn, filterTitle);
 
-  getCategory().then(categoryList => {
+  getCategory().then((categoryList) => {
     for (const categoryListKey in categoryList) {
-      const option = document.createElement('option');
+      const option = document.createElement("option");
       option.value = categoryListKey;
       option.textContent = categoryList[categoryListKey];
       category.append(option);
     }
   });
 
-  const filterForm = document.querySelector('.filter__form');
-  filterForm.addEventListener('submit', (e) => {
+  const filterForm = document.querySelector(".filter__form");
+  filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const checkboxes = new Set();
 
-    [...filterForm.elements].forEach(elem => {
-      if (elem.type === 'checkbox') {
+    [...filterForm.elements].forEach((elem) => {
+      if (elem.type === "checkbox") {
         checkboxes.add(elem.name);
       }
-    })
+    });
 
     const data = {};
 
@@ -59,9 +59,8 @@ export const filter = (goodsList, paginationWrapper) => {
       } else {
         data[name] = value;
       }
-
     }
-    
+
     goodsList.innerHTML = `
       <div class="goods__preload">
       <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,13 +68,15 @@ export const filter = (goodsList, paginationWrapper) => {
       </svg>
       
       </div>
-    `
+    `;
 
     const url = new URL(location);
 
-    const search = url.searchParams.get('search');
+    const search = url.searchParams.get("search");
 
-    url.search = '';
+    url.search = "";
+
+    url.searchParams.set("search", search);
 
     for (const key in data) {
       url.searchParams.set(key, data[key]);
@@ -83,11 +84,11 @@ export const filter = (goodsList, paginationWrapper) => {
 
     history.pushState(null, null, url);
 
-    getGoods().then(({goods, pages, page}) => {
-      filter.classList.remove('filter_show');
+    getGoods().then(({ goods, pages, page }) => {
+      filter.classList.remove("filter_show");
       hideOverlay();
       renderGoods(goodsList, goods);
       startPagination(paginationWrapper, pages, page);
-    })
+    });
   });
-}
+};
