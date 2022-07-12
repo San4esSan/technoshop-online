@@ -1,5 +1,5 @@
-import { serviceCounter } from "./counterControl";
 import { API_URI } from "./var";
+import { serviceCounter } from "./counterControl";
 
 const addToCart = (id, count = 1) => {
   const cartGoods = localStorage.getItem("cart-ts")
@@ -7,6 +7,7 @@ const addToCart = (id, count = 1) => {
     : {};
 
   cartGoods[id] = count;
+
   localStorage.setItem("cart-ts", JSON.stringify(cartGoods));
 };
 
@@ -16,6 +17,7 @@ const removeToCart = (id) => {
     : {};
 
   delete cartGoods[id];
+
   localStorage.setItem("cart-ts", JSON.stringify(cartGoods));
 };
 
@@ -42,7 +44,7 @@ const checkItems = ({ classDelete, classAdd, classCount } = {}) => {
         elem.textContent = "В корзине";
       } else {
         elem.classList.remove(classDelete);
-        elem.textContent = "В корзинy";
+        elem.textContent = "В корзину";
       }
     });
   }
@@ -54,7 +56,12 @@ const checkItems = ({ classDelete, classAdd, classCount } = {}) => {
   }
 };
 
-export const cartControl = ({wrapper, classAdd, classDelete, classCount} = {}) => {
+export const cartControl = ({
+  wrapper,
+  classAdd,
+  classDelete,
+  classCount,
+} = {}) => {
   checkItems({ classDelete, classAdd, classCount });
 
   if (wrapper && classAdd && classDelete) {
@@ -70,12 +77,14 @@ export const cartControl = ({wrapper, classAdd, classDelete, classCount} = {}) =
         addToCart(id);
       }
 
-      checkItems(classDelete);
+      checkItems({ classDelete });
     });
   } else if (classAdd && classCount) {
     const btn = document.querySelector(`.${classAdd}`);
     const id = btn.dataset.idGoods;
+
     const countElem = document.querySelector(`.${classCount}`);
+
     btn.addEventListener("click", () => {
       const count = +countElem.value;
 
@@ -141,9 +150,9 @@ export const renderCart = (goods, cartGoods) => {
     const remove = document.createElement("button");
     remove.className = "item__remove-cart";
     remove.innerHTML = `
-    <svg>
-      <use href="#remove" />
-    </svg>
+      <svg>
+        <use href="#remove"></use>
+      </svg>
     `;
 
     detail.append(title, vendor);
@@ -155,23 +164,23 @@ export const renderCart = (goods, cartGoods) => {
     serviceCounter({
       wrapper: count,
       number: number,
-      selectorDec: '.item__btn_dec',
-      selectorInc: '.item__btn_inc',
+      selectorDec: ".item__btn_dec",
+      selectorInc: ".item__btn_inc",
     });
 
-    count.addEventListener('click', (e) => {
+    count.addEventListener("click", (e) => {
       const target = e.target;
-  
-      if (target.closest('.item__btn_dec, .item__btn_inc')) {
-        addToCart(item.id, +number.value)
+
+      if (target.closest(".item__btn_dec, .item__btn_inc")) {
+        addToCart(item.id, +number.value);
         checkItems();
       }
-    
     });
-    remove.addEventListener('click', () => {
+
+    remove.addEventListener("click", () => {
       removeToCart(item.id);
       li.remove();
       checkItems();
-    })
+    });
   });
 };

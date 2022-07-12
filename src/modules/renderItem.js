@@ -2,37 +2,37 @@ import { API_URI } from "./var";
 import Swiper, { Thumbs } from "swiper";
 
 const createCardImageSlider = (largeImages) => {
-  const cardImageSlider = document.createElement("ul");
-  cardImageSlider.className = "swiper-wrapper";
+  const cardImageSlider = document.createElement('ul');
+  cardImageSlider.className = 'swiper-wrapper';
 
-  const cardImageSlides = largeImages.map((url) => {
-    const li = document.createElement("li");
-    li.className = "swiper-slide";
+  const cardImageSlides = largeImages.map(url => {
+    const li = document.createElement('li');
+    li.className = 'swiper-slide';
     const img = new Image();
     img.src = `${API_URI}${url}`;
     li.append(img);
     return li;
-  });
+  })
 
   cardImageSlider.append(...cardImageSlides);
   return cardImageSlider;
-};
+}
 
 const createCardImageThumbSlider = (smallImages) => {
-  const cardImageSlider = document.createElement("ul");
-  cardImageSlider.className = "swiper-wrapper";
+  const cardImageSlider = document.createElement('ul');
+  cardImageSlider.className = 'swiper-wrapper';
 
-  const cardImageSlides = smallImages.map((url) => {
-    const li = document.createElement("li");
-    li.className = "swiper-slide";
-    const button = document.createElement("button");
-    button.className = "card__thumb-btn";
+  const cardImageSlides = smallImages.map(url => {
+    const li = document.createElement('li');
+    li.className = 'swiper-slide';
+    const button = document.createElement('button');
+    button.className = 'card__thumb-btn';
     const img = new Image();
     img.src = `${API_URI}${url}`;
     button.append(img);
     li.append(button);
     return li;
-  });
+  })
 
   cardImageSlider.append(...cardImageSlides);
   return cardImageSlider;
@@ -44,6 +44,7 @@ const createParams = (params) => {
   for (const key in params) {
     const li = document.createElement('li');
     li.className = 'card__params-item';
+
     li.innerHTML = `
       <span>${key}:</span>
       <span>${params[key]}</span>
@@ -53,7 +54,7 @@ const createParams = (params) => {
   }
 
   return list;
-}
+};
 
 const createDescription = (descriptions) => {
   const list = [];
@@ -61,7 +62,6 @@ const createDescription = (descriptions) => {
   for (const description of descriptions) {
     const p = document.createElement('p');
     p.innerHTML = description;
-
     list.push(p);
   }
 
@@ -69,34 +69,48 @@ const createDescription = (descriptions) => {
 }
 
 export const renderItem = (item) => {
-  console.log(item);
   const cardImage = document.querySelector(".card__image");
   cardImage.append(createCardImageSlider(item.images.large));
 
-  const cardSliderThumb = document.querySelector(".card__slider-thumb");
-  cardSliderThumb.append(createCardImageThumbSlider(item.images.small));
+  const cardSliderThumb = document.querySelector('.card__slider-thumb');
+  cardSliderThumb.append(createCardImageThumbSlider(item.images.small))
 
-  const cardTitle = document.querySelector('.card__title');
+
+  const cardTitle = document.querySelector(".card__title");
   cardTitle.textContent = item.title;
-  const cardVenderCode = document.querySelector('.card__vender-code');
-  cardVenderCode.textContent = `Артикул: ${item.id}`
+
+  const cardVenderCode = document.querySelector(".card__vender-code");
+  cardVenderCode.textContent = `Артикул: ${item.id}`;
+
   const cardPrice = document.querySelector('.card__price');
   cardPrice.textContent = new Intl.NumberFormat('ru-RU', {
     style: 'currency', currency: 'RUB', maximumFractionDigits: 0,
   }).format(item.price);
+
   const cardAddCart = document.querySelector('.card__add-cart');
-cardAddCart.dataset.idGuds = item.id;
+  cardAddCart.dataset.idGoods = item.id;
 
-const cardParamsList = document.querySelector('.card__params-list');
-cardParamsList.append(...createParams(item.characteristic));
+  const cardParamsList = document.querySelector('.card__params-list');
+  cardParamsList.append(...createParams(item.characteristic));
 
-const cardDescriptionText = document.querySelector('.card__description-text');
-cardDescriptionText.append(...createDescription(item.description))
-
+  const cardDescriptionText = document.querySelector('.card__description-text');
+  cardDescriptionText.append(...createDescription(item.description));
 
   const thumbSwiper = new Swiper(cardSliderThumb, {
-    spaceBetween: 44,
+    spaceBetween: 15,
     slidesPerView: 3,
+    
+    breakpoints: {
+      768: {
+        spaceBetween: 20,
+      },
+      1024: {
+        spaceBetween: 27,
+      },
+      1600: {
+        spaceBetween: 44,
+      },
+    },
   });
 
   new Swiper(cardImage, {
@@ -104,7 +118,8 @@ cardDescriptionText.append(...createDescription(item.description))
     slidesPerView: 1,
     thumbs: {
       swiper: thumbSwiper,
+      slideThumbActiveClass: 'card__thumb-btn_active',
     },
-    modules: [Thumbs],
+    modules: [Thumbs]
   });
 };
